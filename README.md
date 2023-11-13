@@ -14,4 +14,8 @@ Con este comando ( en la maquina apple ) siempre falla
 
 npx react-native init AwesomeTSProject --template react-native-template-typescript
 
+Links adicionales
+
+Este es para la navegacion
+https://reactnavigation.org/docs/stack-navigator/
 
