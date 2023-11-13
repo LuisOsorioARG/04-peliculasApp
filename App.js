@@ -1,12 +1,18 @@
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hola Mundo Boludín...</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <View style={styles.container}>
+        <Text>Hola Mundo Boludín 2...</Text>
+        <StatusBar style="auto" />
+      </View>
+    </NavigationContainer>
+   
   );
 }
 
