@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Navigation } from './src/navigation/Navigation';
+import { Navigation } from './src/navigation/Navigation'; 
 import { StyleSheet, View, Text } from 'react-native';
 
 export default function App() {
@@ -10,14 +10,17 @@ export default function App() {
 
   /*
  <NavigationContainer>
-       <Navigation />
+            <View style={styles.container}>
+        <Text>Hola Mundo Boludín 3...</Text>
+      </View>
     </NavigationContainer>
   */
 
   return (
-    <View style={styles.container}>
-      <Text>Hola Mundo Boludín 2...</Text>
-    </View>
+    <NavigationContainer>
+      <Navigation/>
+    </NavigationContainer>
+    
   );
 }
 
@@ -25,7 +28,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'yellow',
     alignItems: 'center',
     justifyContent: 'center',
   },

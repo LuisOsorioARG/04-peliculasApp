@@ -8,7 +8,11 @@ import { HomeScreen } from '../screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
-function Navigation() {
+export function Navigation() {
+
+
+  console.log("Paso por el Navigation..."); 
+
   return (
 
       <Stack.Navigator
@@ -27,5 +31,3 @@ function Navigation() {
 
   );
 }
-
-export default Navigation;
