@@ -1,20 +1,26 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Navigation } from './src/navigation/Navigation';
+import { StyleSheet, View, Text } from 'react-native';
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <View style={styles.container}>
-        <Text>Hola Mundo Boludín 2...</Text>
-        <StatusBar style="auto" />
-      </View>
+
+  console.log("paso x aqqui"); 
+
+
+  /*
+ <NavigationContainer>
+       <Navigation />
     </NavigationContainer>
-   
+  */
+
+  return (
+    <View style={styles.container}>
+      <Text>Hola Mundo Boludín 2...</Text>
+    </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
