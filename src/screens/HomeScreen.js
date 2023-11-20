@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'; 
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Button, ActivityIndicator } from "react-native";
+import { View, Text, Button, ActivityIndicator, StyleSheet, TouchableOpacity } from "react-native";
 import { useMovies } from '../hooks/useMovies';
 import { MoviePoster } from '../components/moviePoster';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -26,7 +26,7 @@ export const HomeScreen = () => {
     }
 
 return (
-    <View style={ {marginTop: top + 20 }}>
+    <View style={styles.container}>
 
         <MoviePoster/>
 
@@ -35,6 +35,7 @@ return (
         </Text>
 
         <Button
+            style={styles.button}
             title='ir al detalle'
             onPress={ () => console.log("Paso por el HomeScreen2...")}
         />
@@ -43,7 +44,36 @@ return (
             onPress={ () => navigation.navigate('DetailScreen')}
         />
 
+      {/* Botón que ocupa el 100% del ancho */}
+      <TouchableOpacity style={styles.button}
+        onPress={ () => navigation.navigate('DetailScreen')}>
+        <Text style={styles.buttonText}>Ir al Detalle</Text>
+      </TouchableOpacity>
 
     </View>
 )
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'flex-end', // Alinear en la parte inferior
+      alignItems: 'center',
+      flexDirection: 'column', // Dirección de columna
+      marginBottom: 20, // Ajusta el espacio desde abajo (puedes cambiar el valor según tus necesidades)
+
+      // Puedes ajustar otros estilos del contenedor según tus necesidades
+    },
+    button: {
+      xbackgroundColor: 'green', // Color celeste
+      backgroundColor:'#c0d23e',
+      width: '90%', // Ocupar el 100% del ancho
+      paddingVertical: 15, // Puedes ajustar el espacio vertical
+      borderRadius: 5, // Bordes redondeados (opcional)
+    },
+    buttonText: {
+      textAlign: 'center',
+      color: 'black', // Color del texto
+      fontWeight: 'light', // Puedes ajustar el peso de la fuente
+    },
+  });
