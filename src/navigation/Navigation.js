@@ -11,8 +11,6 @@ const Stack = createNativeStackNavigator();
 export function Navigation() {
 
 
-  console.log("Paso por el Navigation..."); 
-
   return (
 
       <Stack.Navigator
