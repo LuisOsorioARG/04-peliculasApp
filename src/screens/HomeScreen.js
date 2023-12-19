@@ -35,11 +35,6 @@ return (
         </Text>
 
         <Button
-            style={styles.button}
-            title='ir al detalle'
-            onPress={ () => console.log("Paso por el HomeScreen2...")}
-        />
-                <Button
             title='ir al detalle'
             onPress={ () => navigation.navigate('DetailScreen')}
         />

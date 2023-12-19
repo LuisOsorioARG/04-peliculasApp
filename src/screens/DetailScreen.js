@@ -1,6 +1,7 @@
 import React from 'react'; 
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, Button } from "react-native";
+import { MoviePoster } from '../components/moviePoster';
 
 export const DetailScreen = () => {
 
@@ -12,6 +13,12 @@ return (
         <Text>
             DetailScreen
         </Text>
+
+        <MoviePoster 
+        
+        
+        />
+
         <Button
             title='ir al home'
             onPress={ () => navigation.navigate('HomeScreen')}

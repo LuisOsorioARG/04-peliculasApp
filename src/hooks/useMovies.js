@@ -10,6 +10,9 @@ export const useMovies = () => {
     const getMovies = async () => {
         const resp = await movieDB.get('/now_playing');
         const peliculas = resp.data.results;
+
+        //console.log(resp.data.results); 
+
         setPeliculasEnCine( peliculas );
 
         //si ya lei des-activo isLoading
@@ -19,6 +22,7 @@ export const useMovies = () => {
     useEffect(() => {
         // now_playing
         getMovies(); 
+
     },[]); 
 
     return {
