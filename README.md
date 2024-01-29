@@ -10,6 +10,8 @@ npx create-expo-app peliculasAPP
 
 Luego obviamente cambiamos el nombre peliculasAPP por 04-peliculasApp
 
+Siempre lo ejecutamos con la versión 16 de node
+
 Con este comando ( en la maquina apple ) siempre falla
 
 npx react-native init AwesomeTSProject --template react-native-template-typescript
