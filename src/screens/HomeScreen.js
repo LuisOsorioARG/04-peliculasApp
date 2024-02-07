@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'; 
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Button, ActivityIndicator, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Button, ActivityIndicator, StyleSheet, Pressable } from "react-native";
 import { useMovies } from '../hooks/useMovies';
 import { MoviePoster } from '../components/moviePoster';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -13,6 +13,8 @@ export const HomeScreen = () => {
     const { peliculasEnCine, isLoading } = useMovies();
 
     const navigation = useNavigation(); 
+
+    console.log("peliculasEnCine:",peliculasEnCine); 
 
     //esto es para agregar como un relojito de espera mientras estoy
     //cargando algo en el back-end...
@@ -38,12 +40,6 @@ return (
             title='ir al detalle'
             onPress={ () => navigation.navigate('DetailScreen')}
         />
-
-      {/* Botón que ocupa el 100% del ancho */}
-      <TouchableOpacity style={styles.button}
-        onPress={ () => navigation.navigate('DetailScreen')}>
-        <Text style={styles.buttonText}>Ir al Detalle</Text>
-      </TouchableOpacity>
 
     </View>
 )
