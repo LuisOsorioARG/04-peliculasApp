@@ -21,3 +21,7 @@ Links adicionales
 Este es para la navegacion
 https://reactnavigation.org/docs/stack-navigator/
 
+### versiones
+
+1.0.0 Versión inicial
+1.1.0 En este punto logramos hacerlo funcionar en IOS

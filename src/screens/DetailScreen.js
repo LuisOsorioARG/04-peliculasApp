@@ -14,11 +14,6 @@ return (
             DetailScreen
         </Text>
 
-        <MoviePoster 
-        
-        
-        />
-
         <Button
             title='ir al home'
             onPress={ () => navigation.navigate('HomeScreen')}

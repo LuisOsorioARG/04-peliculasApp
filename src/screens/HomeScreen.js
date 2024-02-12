@@ -1,18 +1,25 @@
 import React, { useEffect } from 'react'; 
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Button, ActivityIndicator, StyleSheet, Pressable } from "react-native";
+import { Text, View, Button, ActivityIndicator, StyleSheet, Pressable, Dimensions } from "react-native";
 import { useMovies } from '../hooks/useMovies';
 import { MoviePoster } from '../components/moviePoster';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
+//import { Carousel } from 'react-native-snap-carousel';
 
+//con esto sacamos la dimensión de la pantalla
+const windowWidth = Dimensions.get('window').width;   
 
 export const HomeScreen = () => {
+
+    
 
     const { top } = useSafeAreaInsets(); 
 
     const { peliculasEnCine, isLoading } = useMovies();
 
     const navigation = useNavigation(); 
+
+    console.log("dimensión de la pantalla:",windowWidth); 
 
     console.log("peliculasEnCine:",peliculasEnCine); 
 
@@ -28,13 +35,30 @@ export const HomeScreen = () => {
     }
 
 return (
-    <View style={styles.container}>
 
-        <MoviePoster/>
+    
+    <View style={{ marginTop: top + 20 }}>
 
-        <Text>
-            HomeScreen
-        </Text>
+        
+
+        {/* Carosel Principal */}
+        <View>
+
+                <MoviePoster movie={peliculasEnCine[2]} />
+
+            </View>
+    {/* Carosel Principal
+            <Carousel
+                data= { peliculasEnCine }
+                renderItem={({ item }) => <MoviePoster movie={item} />}
+                sliderWidth={ 350 }
+                itemWidth={ 300 }
+            />
+
+    */}
+
+
+        
 
         <Button
             title='ir al detalle'
@@ -42,29 +66,7 @@ return (
         />
 
     </View>
+
+
 )
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'flex-end', // Alinear en la parte inferior
-      alignItems: 'center',
-      flexDirection: 'column', // Dirección de columna
-      marginBottom: 20, // Ajusta el espacio desde abajo (puedes cambiar el valor según tus necesidades)
-
-      // Puedes ajustar otros estilos del contenedor según tus necesidades
-    },
-    button: {
-      xbackgroundColor: 'green', // Color celeste
-      backgroundColor:'#c0d23e',
-      width: '90%', // Ocupar el 100% del ancho
-      paddingVertical: 15, // Puedes ajustar el espacio vertical
-      borderRadius: 5, // Bordes redondeados (opcional)
-    },
-    buttonText: {
-      textAlign: 'center',
-      color: 'black', // Color del texto
-      fontWeight: 'light', // Puedes ajustar el peso de la fuente
-    },
-  });
