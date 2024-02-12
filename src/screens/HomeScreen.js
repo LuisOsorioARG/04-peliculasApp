@@ -4,14 +4,14 @@ import { Text, View, Button, ActivityIndicator, StyleSheet, Pressable, Dimension
 import { useMovies } from '../hooks/useMovies';
 import { MoviePoster } from '../components/moviePoster';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
-//import { Carousel } from 'react-native-snap-carousel';
+import { Carousel } from 'react-native-snap-carousel';
 
 //con esto sacamos la dimensión de la pantalla
 const windowWidth = Dimensions.get('window').width;   
 
 export const HomeScreen = () => {
 
-    
+    const { width: windowWidth } = Dimensions.get('window');
 
     const { top } = useSafeAreaInsets(); 
 
@@ -42,26 +42,31 @@ return (
         
 
         {/* Carosel Principal */}
+     
         <View>
 
-                <MoviePoster movie={peliculasEnCine[2]} />
+                <MoviePoster movie={peliculasEnCine[14]} />
 
             </View>
-    {/* Carosel Principal
-            <Carousel
-                data= { peliculasEnCine }
-                renderItem={({ item }) => <MoviePoster movie={item} />}
-                sliderWidth={ 350 }
-                itemWidth={ 300 }
-            />
+     
+                {/* Carosel Principal */}
+                 {/*
+                <View style={{ height: 440 }}>
+                    <Carousel 
+                        data={ peliculasEnCine }
+                        renderItem={ ({ item }) => <MoviePoster movie={ item } /> }
+                        sliderWidth={ windowWidth }
+                        itemWidth={ 300 }
+                        inactiveSlideOpacity={0.9}
+                    />
+                </View>
 
-    */}
-
+            */}
 
         
 
         <Button
-            title='ir al detalle'
+            title='ir al detalle 2'
             onPress={ () => navigation.navigate('DetailScreen')}
         />
 
