@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react'; 
+import Carousel from 'react-native-snap-carousel';
+
 import { useNavigation } from '@react-navigation/native';
+
+
 import { Text, View, Button, ActivityIndicator, StyleSheet, Pressable, Dimensions } from "react-native";
 import { useMovies } from '../hooks/useMovies';
 import { MoviePoster } from '../components/moviePoster';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Carousel } from 'react-native-snap-carousel';
+
 
 //con esto sacamos la dimensión de la pantalla
 const windowWidth = Dimensions.get('window').width;   
@@ -43,14 +47,16 @@ return (
 
         {/* Carosel Principal */}
      
+        {/* 
         <View>
 
                 <MoviePoster movie={peliculasEnCine[14]} />
 
             </View>
+        */}
      
                 {/* Carosel Principal */}
-                 {/*
+       
                 <View style={{ height: 440 }}>
                     <Carousel 
                         data={ peliculasEnCine }
@@ -61,7 +67,7 @@ return (
                     />
                 </View>
 
-            */}
+       
 
         
 
