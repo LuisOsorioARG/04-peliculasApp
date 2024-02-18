@@ -4,11 +4,10 @@ import Carousel from 'react-native-snap-carousel';
 import { useNavigation } from '@react-navigation/native';
 
 
-import { Text, View, Button, ActivityIndicator, StyleSheet, Pressable, Dimensions } from "react-native";
+import { Text, View, Button, ActivityIndicator, StyleSheet, Pressable, Dimensions, FlatList } from "react-native";
 import { useMovies } from '../hooks/useMovies';
 import { MoviePoster } from '../components/moviePoster';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
-
 
 //con esto sacamos la dimensión de la pantalla
 const windowWidth = Dimensions.get('window').width;   
@@ -59,15 +58,24 @@ return (
        
                 <View style={{ height: 440 }}>
                     <Carousel 
+                        
                         data={ peliculasEnCine }
                         renderItem={ ({ item }) => <MoviePoster movie={ item } /> }
                         sliderWidth={ windowWidth }
                         itemWidth={ 300 }
                         inactiveSlideOpacity={0.9}
+                        
                     />
                 </View>
 
-       
+                {/* lista de peliculas */}         
+                 <View style={{ height: 230, backgroundColor: 'red' }}>
+                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}> Peliculas en Cine </Text>
+                    <FlatList
+
+                    />
+
+                 </View>
 
         
 
