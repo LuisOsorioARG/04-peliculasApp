@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
-export const MoviePoster = ({ movie }) => {
+export const MoviePoster = ({ movie, height = 420 , width = 300  }) => {
 
     const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
 
@@ -9,8 +9,15 @@ export const MoviePoster = ({ movie }) => {
 
     return (
     <View style= {{
-        width: 300,
-        height: 420,
+
+        //antes lo seteamos adentro, pero ahora lo recibimos x parametros
+        //width: 300,
+        //height: 420,
+        
+        width,
+        height,
+        marginHorizontal: 5,
+        
         //backgroundColor: 'red'    
         
         shadowColor: "#000",

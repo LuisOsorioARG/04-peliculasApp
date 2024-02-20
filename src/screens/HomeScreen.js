@@ -8,6 +8,7 @@ import { Text, View, Button, ActivityIndicator, StyleSheet, Pressable, Dimension
 import { useMovies } from '../hooks/useMovies';
 import { MoviePoster } from '../components/moviePoster';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ScrollView } from 'react-native';
 
 //con esto sacamos la dimensión de la pantalla
 const windowWidth = Dimensions.get('window').width;   
@@ -39,21 +40,15 @@ export const HomeScreen = () => {
 
 return (
 
+    <ScrollView>
+
+
     
     <View style={{ marginTop: top + 20 }}>
 
         
 
-        {/* Carosel Principal */}
-     
-        {/* 
-        <View>
 
-                <MoviePoster movie={peliculasEnCine[14]} />
-
-            </View>
-        */}
-     
                 {/* Carosel Principal */}
        
                 <View style={{ height: 440 }}>
@@ -72,11 +67,29 @@ return (
                  <View style={{ height: 230, backgroundColor: 'red' }}>
                     <Text style={{ fontSize: 20, fontWeight: 'bold' }}> Peliculas en Cine </Text>
                     <FlatList
-
+                        data = { peliculasEnCine }
+                        renderItem={ ({ item }) => 
+                            <MoviePoster movie={ item } width={ 140 } height={ 200 }/> 
+                            }
+                        keyExtractor={ (item) => item.id.toString() }
+                        horizontal={ true }
+                        showsHorizontalScrollIndicator = { false }
                     />
-
                  </View>
 
+                {/* lista de peliculas */}         
+                <View style={{ height: 230, backgroundColor: 'blue' }}>
+                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}> Peliculas en Cine </Text>
+                    <FlatList
+                        data = { peliculasEnCine }
+                        renderItem={ ({ item }) => 
+                            <MoviePoster movie={ item } width={ 140 } height={ 200 }/> 
+                            }
+                        keyExtractor={ (item) => item.id.toString() }
+                        horizontal={ true }
+                        showsHorizontalScrollIndicator = { false }
+                    />
+                 </View>
         
 
         <Button
@@ -86,6 +99,7 @@ return (
 
     </View>
 
+    </ScrollView>
 
 )
 }
