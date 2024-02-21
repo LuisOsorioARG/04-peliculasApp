@@ -5,17 +5,34 @@ export const useMovies = () => {
 
     const [ isLoading, setIsLoading] = useState( true );
 
-    const [ peliculasEnCine, setPeliculasEnCine ] =  useState([]); 
+    const [ moviesState, setMoviesState ] =  useState({
+        nowPlaying: [],
+        popular: [],
+        topRated: [],
+        upcoming: [],
+    }); 
 
     const getMovies = async () => {
-        const resp = await movieDB.get('/now_playing');
-        const peliculas = resp.data.results;
 
-        //console.log(resp.data.results); 
+        const nowPlayingPromise = await movieDB.get('/now_playing');
+        const popularPromise = await movieDB.get('/popular');
+        const topRatedPromise = await movieDB.get('/top_rated');
+        const upcomingPromise = await movieDB.get('/upcoming');
 
-        setPeliculasEnCine( peliculas );
+        const response = await Promise.all([
+            nowPlayingPromise,
+            popularPromise,
+            topRatedPromise,
+            upcomingPromise
+        ])
 
-        //si ya lei des-activo isLoading
+        setMoviesState( {
+            nowPlaying: response[0].data.results,
+            popular: response[1].data.results,
+            topRated: response[2].data.results,
+            upcoming: response[3].data.results,
+        } );
+
         setIsLoading(false); 
     }
 
@@ -26,7 +43,7 @@ export const useMovies = () => {
     },[]); 
 
     return {
-        peliculasEnCine,
+        ...moviesState,
         isLoading
     }
 

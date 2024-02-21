@@ -9,6 +9,7 @@ import { useMovies } from '../hooks/useMovies';
 import { MoviePoster } from '../components/moviePoster';
 import { useSafeAreaFrame, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native';
+import { HorizontalSlider } from '../components/horizontalSlider';
 
 //con esto sacamos la dimensión de la pantalla
 const windowWidth = Dimensions.get('window').width;   
@@ -19,13 +20,9 @@ export const HomeScreen = () => {
 
     const { top } = useSafeAreaInsets(); 
 
-    const { peliculasEnCine, isLoading } = useMovies();
+    const { nowPlaying, popular, topRated, upcoming, isLoading } = useMovies();
 
     const navigation = useNavigation(); 
-
-    console.log("dimensión de la pantalla:",windowWidth); 
-
-    console.log("peliculasEnCine:",peliculasEnCine); 
 
     //esto es para agregar como un relojito de espera mientras estoy
     //cargando algo en el back-end...
@@ -54,7 +51,7 @@ return (
                 <View style={{ height: 440 }}>
                     <Carousel 
                         
-                        data={ peliculasEnCine }
+                        data={ nowPlaying }
                         renderItem={ ({ item }) => <MoviePoster movie={ item } /> }
                         sliderWidth={ windowWidth }
                         itemWidth={ 300 }
@@ -63,34 +60,16 @@ return (
                     />
                 </View>
 
-                {/* lista de peliculas */}         
-                 <View style={{ height: 230, backgroundColor: 'red' }}>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}> Peliculas en Cine </Text>
-                    <FlatList
-                        data = { peliculasEnCine }
-                        renderItem={ ({ item }) => 
-                            <MoviePoster movie={ item } width={ 140 } height={ 200 }/> 
-                            }
-                        keyExtractor={ (item) => item.id.toString() }
-                        horizontal={ true }
-                        showsHorizontalScrollIndicator = { false }
-                    />
-                 </View>
 
-                {/* lista de peliculas */}         
-                <View style={{ height: 230, backgroundColor: 'blue' }}>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold' }}> Peliculas en Cine </Text>
-                    <FlatList
-                        data = { peliculasEnCine }
-                        renderItem={ ({ item }) => 
-                            <MoviePoster movie={ item } width={ 140 } height={ 200 }/> 
-                            }
-                        keyExtractor={ (item) => item.id.toString() }
-                        horizontal={ true }
-                        showsHorizontalScrollIndicator = { false }
-                    />
-                 </View>
-        
+                {/* lista de peliculas, pero usando el componente HorizontalSlider */}   
+                 <HorizontalSlider title = "Populares" movies={ popular } />
+
+                {/* lista de peliculas, pero usando el componente HorizontalSlider */}   
+                <HorizontalSlider title = "top 10" movies={ topRated } />
+
+                {/* lista de peliculas, pero usando el componente HorizontalSlider */}   
+                <HorizontalSlider title = "Proximas" movies={ upcoming } />
+
 
         <Button
             title='ir al detalle 2'
