@@ -3,10 +3,13 @@ import { useNavigation } from '@react-navigation/native';
 import { View, Text, Button,StyleSheet } from "react-native";
 import { MoviePoster } from '../components/moviePoster';
 
-export const DetailScreen = () => {
+export const DetailScreen = ( { route } ) => {
 
     const navigation = useNavigation(); 
 
+    const movie = route.params;
+
+    console.log("movies:",movie);
 
 return (
     <View style={styles.container}>

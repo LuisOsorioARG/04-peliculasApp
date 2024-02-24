@@ -1,19 +1,25 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 export const MoviePoster = ({ movie, height = 420 , width = 300  }) => {
 
     const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
 
-    console.log("movie:",movie)
+    const navigation = useNavigation(); 
 
     return (
-    <View style= {{
+    <TouchableOpacity 
+
+        onPress={ ()=> navigation.navigate('DetailScreen',movie)}
+
+        activeOpacity={0.8}
+        style= {{
 
         //antes lo seteamos adentro, pero ahora lo recibimos x parametros
         //width: 300,
         //height: 420,
-        
+    
         width,
         height,
         marginHorizontal: 5,
@@ -38,7 +44,7 @@ export const MoviePoster = ({ movie, height = 420 , width = 300  }) => {
                 source = {{ uri }}
                 style = { styles.image }
             />
-    </View>
+    </TouchableOpacity>
     )
 }
 
