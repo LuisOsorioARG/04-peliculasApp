@@ -2,7 +2,7 @@ import {  View } from "react-native";
 
 
 
-export const MoviePoster = ( { movie } ) => {
+export const MoviePosterBorrar = ( { movie } ) => {
 
     return (
         <View>

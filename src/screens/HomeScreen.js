@@ -20,6 +20,8 @@ export const HomeScreen = () => {
 
     const { top } = useSafeAreaInsets(); 
 
+    console.log("Estoy por aqui "); 
+
     const { nowPlaying, popular, topRated, upcoming, isLoading } = useMovies();
 
     const navigation = useNavigation(); 
@@ -62,7 +64,10 @@ return (
 
 
                 {/* lista de peliculas, pero usando el componente HorizontalSlider */}   
-                 <HorizontalSlider title = "Populares" movies={ popular } />
+                 <HorizontalSlider 
+                    title = "Populares"
+                    movies={ popular }
+                    loadNextPage= { () => console.log("Final Alcanzado") } />
 
                 {/* lista de peliculas, pero usando el componente HorizontalSlider */}   
                 <HorizontalSlider title = "top 10" movies={ topRated } />
