@@ -11,7 +11,7 @@ export const DetailScreen = ( { route } ) => {
 
     const movie = route.params;
 
-    console.log("movies:",movie.title);
+    console.log("movies:",movie);
 
     const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
 

@@ -26,6 +26,8 @@ export const useMovies = () => {
             upcomingPromise
         ])
 
+        console.log(response[1].data.results);
+
         setMoviesState( {
             nowPlaying: response[0].data.results,
             popular: response[1].data.results,

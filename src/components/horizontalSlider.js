@@ -1,27 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, FlatList } from "react-native";
 import { MoviePoster } from '../components/moviePoster';
+import { useRef } from 'react';
 
 
 export const HorizontalSlider = ({ title, movies, loadNextPage }) => {
 
+
+    //como vamos a depender del llamado a una API lo que hacemos es colocar
+    //una variable que nos garantice no hacer nada mientas estamos cargando
+    const isLoading = useRef(false); 
+
+
+    //colocamos un useEffect para que demore un tiempo para que pueda
+    //cargar todas las peliculas
+    useEffect(() => {
+        setTimeout(() => { isLoading.current = false; },200);
+    },[ movies ]);
+
     const onScroll = ( event ) => {
 
-        //console.log("estoy por el onScroll"); 
+        //si estoy cargando no muestro nada...
+        if ( isLoading.current === true ) return; 
 
-        const { contentOffSet, layoutMeasurement, contentSize } = event.nativeEvent; 
+        const { contentOffset, layoutMeasurement, contentSize } = event.nativeEvent; 
 
-        //console.log("event.nativeEvent:",event.nativeEvent); 
-        //console.log("event.nativeEvent.layoutMeasurement:",event.nativeEvent.layoutMeasurement); 
 
-        //console.log( { contentOffSet, layoutMeasurement, contentSize }); 
-
-        const isEndReached = ( event.nativeEvent.contentOffset.x + layoutMeasurement.width + 600) >= contentSize.width; 
+        const isEndReached = ( contentOffset.x + layoutMeasurement.width + 600) >= contentSize.width; 
                                                                    
-        //si llegamos al final no hacemos nada y nos vamos
+        //si no llegamos al final no hacemos nada y nos vamos porque ya mostramos...
         if ( !isEndReached ) return; 
 
-        //en este punto llegamos al final
+        //en este punto llegamos al final y algo tenemos que hacer...
+        //loadNexPage() es una función que me viene x parametro
         loadNextPage && loadNextPage(); 
 
     }; 
