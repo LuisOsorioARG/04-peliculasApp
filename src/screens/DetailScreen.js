@@ -1,7 +1,7 @@
 import React from 'react'; 
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Button,StyleSheet,Dimensions,Image, ScrollView } from "react-native";
-import { MoviePoster } from '../components/moviePoster';
+import { View, Text, Button,StyleSheet,Dimensions,Image, ScrollView,ActivityIndicator } from "react-native";
+import { useMovie } from '../hooks/useMovie';
 
 const screenHeigh = Dimensions.get('screen').height; 
 
@@ -11,13 +11,28 @@ export const DetailScreen = ( { route } ) => {
 
     const movie = route.params;
 
+    const { data, isLoading } = useMovie(movie.id); 
+
+    console.log("Data from useMovie:",data.production_companies[0].name);
+
+  
+
     // en movie tenemos todos estos campos
     /*
     {"adult": false, "backdrop_path": "/hIUs8RzKlrzgbWxn2EpWmiTFqCc.jpg", "genre_ids": [878, 53], "id": 870404, "original_language": "en", "original_title": "Meteor", "overview": "Después de que un meteorito choca contra la Tierra, un ranchero solitario y una niña perdida huyen de mercenarios viciosos.", "popularity": 471.63, "poster_path": "/p9kTkPa4wMA7uStnvglAcBmEOUq.jpg", "release_date": "2021-09-01", "title": "Meteoro", "video": false, "vote_average": 5.452, "vote_count": 83}
     */
-    console.log("movies:",movie);
+    //console.log("movies:",movie);
 
     const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+
+    if ( isLoading ) {
+      return (
+          <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center'}}>
+              <ActivityIndicator color='red' size={100} />
+          </View>
+      );
+  }
+
 
 return (
   
@@ -41,6 +56,14 @@ return (
 
           <Text style={styles.title}>
             { movie.title }
+          </Text>
+
+          <Text style={styles.subTitle}>
+            { movie.id }
+          </Text>
+
+          <Text style={styles.title}>
+            { data.production_companies[0].name }
           </Text>
 
         </View>

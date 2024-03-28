@@ -15,6 +15,8 @@ export const useMovies = () => {
     const getMovies = async () => {
 
         const nowPlayingPromise = await movieDB.get('/now_playing');
+        console.log("getMovies - Promesa url que armanos:",nowPlayingPromise);
+
         const popularPromise = await movieDB.get('/popular');
         const topRatedPromise = await movieDB.get('/top_rated');
         const upcomingPromise = await movieDB.get('/upcoming');
@@ -26,7 +28,7 @@ export const useMovies = () => {
             upcomingPromise
         ])
 
-        console.log(response[1].data.results);
+        //console.log(response[1].data.results);
 
         setMoviesState( {
             nowPlaying: response[0].data.results,
@@ -51,7 +53,3 @@ export const useMovies = () => {
 
 
 }
-
-
-
-
